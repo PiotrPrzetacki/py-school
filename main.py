@@ -3,7 +3,7 @@ oceny.readline()
 oceny_uczniow = {}
 for ocena in oceny:
     o = ocena.split(';')
-    id = int(o[0])
+    id = o[0]
     ocena = int(o[1])
     if id in oceny_uczniow.keys():
         oceny_uczniow[id].append(ocena)
@@ -18,4 +18,12 @@ for id in oceny_uczniow.keys():
         max_avg['avg'] = avg
         max_avg['id'] = id
 
-print(max_avg['id'])
+def getUczen():
+    uczniowie = open('uczniowie.txt', 'r')
+    uczniowie.readline()
+    for uczen in uczniowie:
+        u = uczen.split(';')
+        if u[0] == max_avg['id']:
+            return (u[2], u[1])
+        
+print(getUczen(), max_avg['avg'])
